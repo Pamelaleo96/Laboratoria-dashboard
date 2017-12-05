@@ -51,7 +51,7 @@ function enrollment(data, campus = campusDefault, cohort = cohortDefault) {
 // var temp = enrollment(data);
 // fin de funcionalidad de Enrollment
 
-// inicio de funcionalidad de Achievement
+// inicio de funcionalidad de Achievement --ACHIEVEMENT---
 
 // 70% de la cantidad total de puntos tech
 function metTech() {
@@ -68,8 +68,8 @@ function getTargetedStudents(students) {
   var targetedStudents = 0;
   var totalStudents = getTotalStudents(students);
 
-  metTech = metTech();
-  metHse = metHse();
+  metTech = metTech(); // TIENE EL VALOR 1800
+  metHse = metHse(); // TIENE EL VALOR 1200 -- te permite cambiar facilmente si el cliente pide modificacion 
 
   for (var i = 0; i < totalStudents; i++) {
     var student = students[i];
@@ -94,7 +94,7 @@ function getTargetedStudents(students) {
       hasMetTechTarget = (totalTech / totalSprints) > metTech;
       hasMetHseTarget = (totalHse / totalSprints) > metHse;
 
-      if (hasMetTechTarget && hasMetHseTarget) {
+      if (hasMetTechTarget && hasMetHseTarget) { // ESTUDIANTES QUE CUMPLEN CON EL PROMEDIO DE 70 % PARA TECH Y HSE
         targetedStudents++;
       }
     }
@@ -104,13 +104,13 @@ function getTargetedStudents(students) {
 
 // porcentaje de estudiantes que cumplen tech y hse
 function getAchievementPercent(students, targetedStudents) {
-  return (targetedStudents / students * 100).toFixed(2);
+  return (targetedStudents / students * 100).toFixed(2); // toFixed -> redondea
 }
 
 // obtiene el total de estudiantes activos
 function getActiveStudents(students) {
   var totalActiveStudents = 0;
-  var totalStudents = getTotalStudents(students);
+  var totalStudents = getTotalStudents(students); // 
 
   for (var i = 0; i < totalStudents; i++) {
     var student = students[i];
@@ -130,7 +130,7 @@ function achievement(data, campus = campusDefault, cohort = cohortDefault) {
 
   var targetedStudents = getTargetedStudents(students);
   var totalStudents = getActiveStudents(students);
-  var targetedStudentsPercent = getAchievementPercent(totalStudents, targetedStudents);
+  var targetedStudentsPercent = getAchievementPercent(totalStudents, targetedStudents); // total de estudiantes y la cantidad de estudiantes que pasaron
 
   objAchievement.targetedStudents = targetedStudents;
   objAchievement.totalStudents = getActiveStudents(students);

@@ -23,16 +23,16 @@ function showStudentDetail(data, campus = campusDefault, cohort = cohortDefault)
   
   var students = studentsDetail(data, campus, cohort);
 
-  studentsContainer.innerHTML = '';
+  studentsContainer.innerHTML = ''; // VACIAMOS EL CONTENEDOR PARA VOLVER A USAR EL EVENTO
 
   students.forEach(student => {
     if (student.active) {
       var studentCard = studentCardTemplate.replace('__photo__', student.photo)
-        .replace(/__name__/g, student.name)
+        .replace(/__name__/g, student.name) // G= REMPLAZO LOS NAME
         .replace('__tech__', student.scores.tech)
         .replace('__hse__', student.scores.hse);
 
-      studentsContainer.innerHTML += studentCard;
+      studentsContainer.innerHTML += studentCard; // ACUMULAR EL VALOR DE LOS ESTUDIANTES
     }
   });
 }

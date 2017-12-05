@@ -2,7 +2,7 @@
 
 function getScores(student) {
   var objScores = {};
-  var sprints = student.sprints;
+  var sprints = student.sprints; // va a ser un arreglo CONFORMADO POR OBJETOS = SPRINGS
   var totalSprints = sprints.length;
   var techTotal = 0, hseTotal = 0;
 
@@ -13,7 +13,7 @@ function getScores(student) {
     hseTotal += sprint.score.hse;
   }
 
-  objScores.tech = (techTotal / (TECH * totalSprints) * 100).toFixed(2);
+  objScores.tech = (techTotal / (TECH * totalSprints) * 100).toFixed(2); // CALCULA EL PORCENTAJE Y ALMACENA AL OBJETO CREADO AL INICIO
   objScores.hse = (hseTotal / (HSE * totalSprints) * 100).toFixed(2);
 
   return objScores;

@@ -63,7 +63,7 @@ function getTargetedStudents(students) {
   var targetedStudents = 0;
   var totalStudents = students.length;
 
-  metTech = calcMetTech();
+  metTech = calcMetTech(); // PROMEDIO DE TECH EN PORCENTAJE
   metHse = calcMetHse();
 
   for (var i = 0; i < totalStudents; i++) {
@@ -183,32 +183,32 @@ function netPrometerScore(data, campus = campusDefault, cohort = cohortDefault) 
 var temp = netPrometerScore(data);
 // --- fin de funcionalidad de Net promoter score
 
-// *** inicio funcionalidad de Tech Skills
+// *** inicio funcionalidad de Tech Skills-------------
 
 function getTechTargetedStudents(students) {
   var targetedStudents = 0;
   var totalStudents = students.length;
-  var metTech = calcMetTech();
+  var metTech = calcMetTech(); // 
 
   for (var i = 0; i < totalStudents; i++) {
     var student = students[i];
 
     if (student.active) {
-      var techTotal = 0;
-      var sprints = student.sprints;
-      var totalSprints = sprints.length;
+      var techTotal = 0; // SI EL ESTUDIANTE ESTA ACTIVO 
+      var sprints = student.sprints; // DEVUELVE ARRAY
+      var totalSprints = sprints.length; // DEVUELVE LA LONGITUD
       var averageTech = 0;
 
-      for (var j = 0; j < totalSprints; j++) {
+      for (var j = 0; j < totalSprints; j++) { // RECORRER EL SPRING
         var sprint = sprints[j];
 
-        techTotal += sprint.score.tech;
+        techTotal += sprint.score.tech; // TOMAMOS EL PUNTOS TECH
       }
 
-      averageTech = techTotal / totalSprints;
+      averageTech = techTotal / totalSprints; //
 
-      if (averageTech > metTech) {
-        targetedStudents++;
+      if (averageTech > metTech) { // SI SUPERA EL PUNTO TECH
+        targetedStudents++; // SI EL ESTUDIANTE CUMPLE CON EL PORCENTAJE TECH 
       }
     }
   }
@@ -216,7 +216,7 @@ function getTechTargetedStudents(students) {
 }
 
 function getTechTargetedPercent(targetedStudents, totalStudents) {
-  return (targetedStudents / totalStudents * 100).toFixed(2);
+  return (targetedStudents / totalStudents * 100).toFixed(2); // 
 }
 
 function techSkills(data, campus = campusDefault, cohort = cohortDefault) {
@@ -224,10 +224,10 @@ function techSkills(data, campus = campusDefault, cohort = cohortDefault) {
   var students = getStudents(data, campus, cohort);
 
   objTechSkills.targetedStudents = getTechTargetedStudents(students);
-  objTechSkills.totalStudents = getActiveStudents(students);
+  objTechSkills.totalStudents = getActiveStudents(students); // obtenemos los valores
   objTechSkills.targetedStudentsPercent = getTechTargetedPercent(objTechSkills.targetedStudents, objTechSkills.totalStudents);
 
-  return objTechSkills;
+  return objTechSkills; // MUESTRA TODOS LOS VALORES ALMACENADOS DEL OBJETO
 }
 
 var temp = techSkills(data);

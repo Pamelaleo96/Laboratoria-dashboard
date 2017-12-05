@@ -313,7 +313,7 @@ function getStudentSatisfaction(ratings) {
   return studentSatisfaction.toFixed(2);
 }
 
-function studentSatisfaction(data, campus = campusDefault, cohort = cohortDefault) {
+function studentSatisfaction(data, campus = campusDefault, cohort = cohortDefault) { //
   var ratings = getRatings(data, campus, cohort);
   
   return getStudentSatisfaction(ratings);

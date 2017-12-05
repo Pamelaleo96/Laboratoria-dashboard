@@ -340,5 +340,5 @@ function teacherRating(data, campus = campusDefault, cohort = cohortDefault) {
   return getLastTeacherRating(ratings);
 }
 
-var temp = teacherRating(data);
+var temp = teacherRating(data); // argumento para que ejecute la funcion
 // --- fin funcionalidad de Teacher reating

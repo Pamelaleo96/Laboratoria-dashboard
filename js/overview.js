@@ -137,48 +137,48 @@ function achievement(data, campus = campusDefault, cohort = cohortDefault) {
 // var temp = achievement(data);
 // fin de funcionalidad de Achievement
 
-// inicio de funcionalidad de Net promoter score
+// inicio de funcionalidad de Net promoter score ----NPS---
 
-function getProPasDet(ratings) {
+function getProPasDet(ratings) { 
   var obj = {};
   var promoters = 0, passive = 0, detractors = 0;
-  var totalSprints = ratings.length;
+  var totalSprints = ratings.length; // TOTAL SPRING SEGUN RATINGS
 
   for (var i = 0; i < totalSprints; i++) {
     var sprint = ratings[i];
 
-    promoters += sprint.nps.promoters;
+    promoters += sprint.nps.promoters; // INGRESA AL OBJETO PROMOTERS Y ACUMULA SU VALOR DEL 1ER PROMOTERS  
     passive += sprint.nps.passive;
     detractors += sprint.nps.detractors;
   }
 
-  obj.promotersPercent = (promoters / totalSprints).toFixed(2);
+  obj.promotersPercent = (promoters / totalSprints).toFixed(2); // CALCULAMOS CADA PROPIEDAD Y GUARDAMOS AL OBJETO
   obj.passivePercent = (passive / totalSprints).toFixed(2);
   obj.detractorsPercent = (detractors / totalSprints).toFixed(2);
 
   return obj;
 }
 
-function getNetPrometerScore(data, campus = campusDefault, cohort = cohortDefault) {
+function getNetPrometerScore(data, campus = campusDefault, cohort = cohortDefault) { // FUNCION CON 3 PARAMETORS
   var objNetPrometerScore = null;
-  var ratings = getRatings(data, campus, cohort);
+  var ratings = getRatings(data, campus, cohort); // TRAE EL VALOR DEL RATING POR SEDE (SE OBTIENE UN ARRAY DE RATINGS)
 
-  objNetPrometerScore = getProPasDet(ratings);
+  objNetPrometerScore = getProPasDet(ratings); // SUS PROPIEDADES DE objNetPrometerScore ->PROMETERS, PASSIVE Y DETRACTORS
 
   return objNetPrometerScore;
 }
 
 function calcNetPrometerScore(promotersPercent, detractorsPercent) {
-  return promotersPercent - detractorsPercent;
+  return promotersPercent - detractorsPercent; // ESTA FUNCION CALCULA calcNetPrometerScore
 }
 
 function netPrometerScore(data, campus = campusDefault, cohort = cohortDefault) {
   var objNetPrometerScore = getNetPrometerScore(data, campus, cohort);
 
-  objNetPrometerScore.nps = calcNetPrometerScore(objNetPrometerScore.promotersPercent, objNetPrometerScore.detractorsPercent);
+  objNetPrometerScore.nps = calcNetPrometerScore(objNetPrometerScore.promotersPercent, objNetPrometerScore.detractorsPercent); // SE REALIZA EL CALCULO  POR SEPARADO PARA NO AFECTAR LA FUNCION
   
   return objNetPrometerScore;
 }
 
-var temp = netPrometerScore(data);
+var temp = netPrometerScore(data); // 
 // fin de funcionalidad de Net promoter score
